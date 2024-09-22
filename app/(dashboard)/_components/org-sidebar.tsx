@@ -67,7 +67,7 @@ export const OrgSidebar = () => {
           size="lg"
           className={cn(
             "font-normal justify-start px-2 w-full text-gray-700 dark:text-gray-300",
-            !favorites && "bg-zinc-200",
+            !favorites && "bg-zinc-200 dark:bg-zinc-700",
           )}
         >
           <Link href="/">
@@ -81,7 +81,7 @@ export const OrgSidebar = () => {
           size="lg"
           className={cn(
             "font-normal justify-start px-2 w-full text-gray-700 dark:text-gray-300",
-            favorites && "bg-zinc-200",
+            favorites && "bg-zinc-200 dark:bg-zinc-700",
           )}
         >
           <Link
