@@ -8,6 +8,7 @@ import { OrganizationSwitcher } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Star } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useSearchParams } from "next/navigation";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -16,6 +17,8 @@ const font = Poppins({
 
 export const OrgSidebar = () => {
   const { theme } = useTheme();
+  const searchParams = useSearchParams();
+  const favorites = searchParams.get("favorites");
 
   return (
     <div className="hidden lg:flex flex-col space-y-6 w-[210px] p-5 border-r border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900">
@@ -62,7 +65,10 @@ export const OrgSidebar = () => {
           variant="transparent"
           asChild
           size="lg"
-          className="font-normal justify-start px-2 w-full text-gray-700 dark:text-gray-300"
+          className={cn(
+            "font-normal justify-start px-2 w-full text-gray-700 dark:text-gray-300",
+            !favorites && "bg-zinc-200",
+          )}
         >
           <Link href="/">
             <LayoutDashboard className="w-4 h-4 mr-2" />
@@ -73,7 +79,10 @@ export const OrgSidebar = () => {
           variant="transparent"
           asChild
           size="lg"
-          className="font-normal justify-start px-2 w-full text-gray-700 dark:text-gray-300"
+          className={cn(
+            "font-normal justify-start px-2 w-full text-gray-700 dark:text-gray-300",
+            favorites && "bg-zinc-200",
+          )}
         >
           <Link
             href={{

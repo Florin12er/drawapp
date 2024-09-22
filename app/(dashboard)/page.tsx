@@ -1,9 +1,26 @@
-import { SignInButton, UserButton } from "@clerk/nextjs";
-export default function Home() {
+"use client";
+
+import { useOrganization } from "@clerk/nextjs";
+import { EmptyOrg } from "./_components/empty-org";
+import BoardList from "./_components/board-list";
+
+interface HomeProps {
+  searchParams: {
+    search?: string;
+    favorites?: string;
+  };
+}
+
+export default function Home({ searchParams }: HomeProps) {
+  const { organization } = useOrganization();
+
   return (
-    <>
-      <div>Home</div>
-      <SignInButton />
-    </>
+    <div className="flex-1 h-[calc(100%-80px)] p-6">
+      {organization ? (
+        <BoardList orgId={organization.id} query={searchParams} />
+      ) : (
+        <EmptyOrg />
+      )}
+    </div>
   );
 }
