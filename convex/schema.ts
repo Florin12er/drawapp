@@ -18,4 +18,13 @@ export default defineSchema({
       searchField: "title", // this defines the search field as the title
       filterFields: ["orgId"], // this defines the filter fields as the orgId
     }),
+  userFavorites: defineTable({
+    orgId: v.string(), // this defines the organization id as a string
+    userId: v.string(), // this defines the user id as a string
+    boardId: v.string(), // this defines the board id as a string
+  })
+    .index("by_board", ["boardId"]) // this creates an index on the boardId field
+    .index("by_user_org", ["userId", "orgId"]) // this creates an index on the userId and orgId
+    .index("by_user_board", ["userId", "boardId"]) // this creates an index on the userId and boardId
+    .index("by_user_board_org", ["userId", "boardId", "orgId"]), // this creates an index on the userId, boardId, and orgId
 });
