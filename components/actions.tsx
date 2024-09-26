@@ -19,6 +19,7 @@ interface ActionsProps {
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
+  alignOffset?: DropdownMenuContentProps["alignOffset"];
   id: string;
   title: string;
 }
@@ -27,6 +28,7 @@ export const Actions = ({
   children,
   side,
   sideOffset,
+  alignOffset,
   id,
   title,
 }: ActionsProps) => {
@@ -62,6 +64,7 @@ export const Actions = ({
         side={side}
         sideOffset={sideOffset}
         className="w-60"
+        alignOffset={alignOffset}
       >
         <DropdownMenuItem onClick={onCopyLink} className="cursor-pointer">
           <Link2 className="mr-2 h-4 w-4" />

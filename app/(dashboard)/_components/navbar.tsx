@@ -57,7 +57,7 @@ export const Navbar = () => {
         <UserButton />
       </div>
 
-      <ModeToggle />
+      <ModeToggle variant="transparent" align="end" />
     </div>
   );
 };
