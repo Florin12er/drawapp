@@ -184,10 +184,6 @@ export const get = query({
   },
   handler: async (ctx, args) => {
     const board = await ctx.db.get(args.id); // this gets the board from the database
-    if (!board) {
-      // this checks if the board exists
-      throw new Error("Board not found"); // this throws an error
-    }
     return board;
   },
 });

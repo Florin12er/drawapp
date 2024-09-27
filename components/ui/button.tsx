@@ -22,6 +22,7 @@ const buttonVariants = cva(
         blue: "bg-blue-700 text-white hover:bg-blue-900",
         board: "hover:bg-blue-500/20 hover:text-blue-800",
         boardDark: "hover:bg-blue-300/20 hover:text-blue-400",
+        boardActive: "bg-blue-500/20 text-blue-800",
       },
       size: {
         default: "h-10 px-4 py-2",
