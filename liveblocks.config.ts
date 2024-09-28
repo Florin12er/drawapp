@@ -88,6 +88,7 @@ export type ThreadMetadata = {
 export const {
   suspense: {
     RoomProvider,
+    useHistory,
     useRoom,
     useMyPresence,
     useUpdateMyPresence,

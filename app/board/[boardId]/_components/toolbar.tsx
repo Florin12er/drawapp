@@ -1,3 +1,4 @@
+"use client";
 import {
   Circle,
   MousePointer2,
@@ -9,22 +10,53 @@ import {
   Undo2,
 } from "lucide-react";
 import { ToolButton } from "./tool-button";
+import { CanvasState, CanvasMode, LayerType } from "@/types/canvas";
 
-export const Toolbar = () => {
+interface ToolbarProps {
+  canvasState: CanvasState;
+  setCanvasState: (newState: CanvasState) => void;
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+}
+
+export const Toolbar = ({
+  undo,
+  redo,
+  canUndo,
+  canRedo,
+  canvasState,
+  setCanvasState,
+}: ToolbarProps) => {
   return (
     <div className="absolute top-[50%] -translate-y-[-70%] left-2 flex flex-col gap-y-4">
       <div className="bg-white dark:bg-neutral-700 rounded-md p-1.5 flex gap-y-1 flex-col items-center shadow-md">
         <ToolButton
           label="Select"
           icon={MousePointer2}
-          onClick={() => {}}
-          isActive={false}
+          onClick={() => setCanvasState({ mode: CanvasMode.None })}
+          isActive={
+            canvasState.mode === CanvasMode.None ||
+            canvasState.mode === CanvasMode.Translating ||
+            canvasState.mode === CanvasMode.SelectionNet ||
+            canvasState.mode === CanvasMode.Pressing ||
+            canvasState.mode === CanvasMode.Resizing
+          }
         />
         <ToolButton
           label="Text"
           icon={Type}
-          onClick={() => {}}
-          isActive={false}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Inserting,
+              layerType: LayerType.Text,
+            })
+          }
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Text
+          }
         />
         <ToolButton
           label="Sticky Note"
@@ -55,14 +87,14 @@ export const Toolbar = () => {
         <ToolButton
           label="Undo"
           icon={Undo2}
-          onClick={() => {}}
-          isDisabled={true}
+          onClick={undo}
+          isDisabled={!canUndo}
         />
         <ToolButton
           label="Redo"
           icon={Redo2}
-          onClick={() => {}}
-          isDisabled={true}
+          onClick={redo}
+          isDisabled={!canRedo}
         />
       </div>
     </div>
