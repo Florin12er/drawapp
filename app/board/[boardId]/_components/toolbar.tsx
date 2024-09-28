@@ -61,26 +61,54 @@ export const Toolbar = ({
         <ToolButton
           label="Sticky Note"
           icon={StickyNote}
-          onClick={() => {}}
-          isActive={false}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Inserting,
+              layerType: LayerType.Note,
+            })
+          }
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Note
+          }
         />
         <ToolButton
           label="Rectangle"
           icon={Square}
-          onClick={() => {}}
-          isActive={false}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Inserting,
+              layerType: LayerType.Rectangle,
+            })
+          }
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Rectangle
+          }
         />
         <ToolButton
           label="Ellipse"
           icon={Circle}
-          onClick={() => {}}
-          isActive={false}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Inserting,
+              layerType: LayerType.Ellipse,
+            })
+          }
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Ellipse
+          }
         />
         <ToolButton
           label="Pen"
           icon={Pencil}
-          onClick={() => {}}
-          isActive={false}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Pencil,
+            })
+          }
+          isActive={canvasState.mode === CanvasMode.Pencil}
         />
       </div>
       <div className="bg-white dark:bg-neutral-700 rounded-md p-1.5 flex gap-y-1 flex-col items-center shadow-md">
