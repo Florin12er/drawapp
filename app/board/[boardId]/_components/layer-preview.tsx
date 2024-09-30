@@ -1,23 +1,22 @@
 "use client";
 
-import { memo } from "react";
 import { useStorage } from "@/liveblocks.config";
 import { LayerType } from "@/types/canvas";
+import { memo } from "react";
 import { Rectangle } from "./rectangle";
+import { colorToCss } from "@/lib/utils";
 
 interface LayerPreviewProps {
   id: string;
   onLayerPointerDown: (e: React.PointerEvent, layerId: string) => void;
-  selectionColor?: string | null;
+  selectionColor?: string;
 }
 
 export const LayerPreview = memo(
   ({ id, onLayerPointerDown, selectionColor }: LayerPreviewProps) => {
-    const layer = useStorage((s) => s.layers.get(id));
+    const layer = useStorage((root) => root.layers.get(id));
+    if (!layer) return null;
 
-    if (!layer) {
-      return null;
-    }
     switch (layer.type) {
       case LayerType.Rectangle:
         return (
@@ -28,9 +27,9 @@ export const LayerPreview = memo(
             selectionColor={selectionColor}
           />
         );
+
       default:
-        console.log("Unknown layer type");
-        return null;
+        console.warn("Unsupported layer type");
     }
   },
 );
