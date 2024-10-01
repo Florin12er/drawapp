@@ -1,11 +1,13 @@
 "use client";
 import {
   Circle,
+  Diamond,
   MousePointer2,
   Pencil,
   Redo2,
   Square,
   StickyNote,
+  Triangle,
   Type,
   Undo2,
 } from "lucide-react";
@@ -84,6 +86,34 @@ export const Toolbar = ({
           isActive={
             canvasState.mode === CanvasMode.Inserting &&
             canvasState.layerType === LayerType.Rectangle
+          }
+        />
+        <ToolButton
+          label="Triangle"
+          icon={Triangle}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Inserting,
+              layerType: LayerType.Triangle,
+            })
+          }
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Triangle
+          }
+        />
+        <ToolButton
+          label="Rhombus"
+          icon={Diamond}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Inserting,
+              layerType: LayerType.Rhombus,
+            })
+          }
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Rhombus
           }
         />
         <ToolButton
