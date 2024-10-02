@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useRenameModal } from "@/store/use-rename-modal";
-import { ImageDown, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useQuery } from "convex/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,14 +15,13 @@ import { ModeToggle } from "@/components/mode-toggle";
 
 interface InfoProps {
   boardId: string;
-  exportAsPng: () => void;
 }
 
 const TabSeparator = () => {
   return <div className="text-neutral-300 px-1.5 pointer-events-none">|</div>;
 };
 
-export const Info = ({ boardId, exportAsPng }: InfoProps) => {
+export const Info = ({ boardId }: InfoProps) => {
   const { theme } = useTheme();
   const { onOpen } = useRenameModal();
   const data = useQuery(api.board.get, { id: boardId as Id<"boards"> });
@@ -49,16 +48,6 @@ export const Info = ({ boardId, exportAsPng }: InfoProps) => {
           }
         >
           {data?.title}
-        </Button>
-      </Hint>
-      <TabSeparator />
-      <Hint label="Export as PNG" side="bottom" sideOffset={10}>
-        <Button
-          size="icon"
-          variant={theme === "dark" ? "boardDark" : "board"}
-          onClick={exportAsPng}
-        >
-          <ImageDown />
         </Button>
       </Hint>
       <TabSeparator />

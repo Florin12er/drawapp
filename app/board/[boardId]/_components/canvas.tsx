@@ -509,7 +509,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
 
   return (
     <main className="w-full h-full relative bg-neutral-200 dark:bg-neutral-800 touch-none">
-      <Info boardId={boardId as string} exportAsPng={() => {}} />
+      <Info boardId={boardId as string} />
       <Participants />
       <Toolbar
         canvasState={canvasState}
