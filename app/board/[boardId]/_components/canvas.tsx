@@ -164,14 +164,14 @@ export const Canvas = ({ boardId }: CanvasProps) => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      undoKeyMap(e as any);
-      redoKeyMap(e as any);
-      pencilKeyMap(e as any);
-      textKeyMap(e as any);
-      noteKeyMap(e as any);
-      triangleKeyMap(e as any);
-      ellipseKeyMap(e as any);
-      diamondKeyMap(e as any);
+      undoKeyMap(e as unknown as React.KeyboardEvent);
+      redoKeyMap(e as unknown as React.KeyboardEvent);
+      pencilKeyMap(e as unknown as React.KeyboardEvent);
+      textKeyMap(e as unknown as React.KeyboardEvent);
+      noteKeyMap(e as unknown as React.KeyboardEvent);
+      triangleKeyMap(e as unknown as React.KeyboardEvent);
+      ellipseKeyMap(e as unknown as React.KeyboardEvent);
+      diamondKeyMap(e as unknown as React.KeyboardEvent);
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -179,7 +179,16 @@ export const Canvas = ({ boardId }: CanvasProps) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [undoKeyMap, redoKeyMap]);
+  }, [
+    undoKeyMap,
+    redoKeyMap,
+    pencilKeyMap,
+    textKeyMap,
+    noteKeyMap,
+    triangleKeyMap,
+    ellipseKeyMap,
+    diamondKeyMap,
+  ]);
 
   const insertLayer = useMutation(
     (
